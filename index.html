@@ -3,17 +3,41 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="app/styles/todo.css">
+
 </head>
-<body ng-app="">
-<input ng-model="firstname">
-<span ng-bind="firstname"></span>
-{{1+2}}
+<body ng-app="myApp">
+<div ng-controller="TodoCtrl">
+    <div>
+        <h1>Todo App</h1>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label>
+                <input type="text" ng-model="newTodo.title">
+            </label>
+            <button class="btn btn-primary" ng-click="add()" type="submit">Add Todo</button>
+        </div>
+    </form>
+    <div ng-repeat="todo in todos">
+        <label>
+            <input type="checkbox" ng-model="todo.completed">
+        </label>
+        <span ng-class="{completed:todo.completed}">{{todo.title}}</span>
+        <button ng-click="delete(todo)" class="btn btn-primary">X</button>
+    </div>
+    <div>
+        <button class="btn btn-success" ng-click="clearCompleted()">Clear Completed</button>
+    </div>
+</div>
+
 <script src="js/angular.js"></script>
-<script>
-    /*To create module*/
-    angular.module("myApp",[]);
-/*To use modeule*/
-    angular.module("myApp");
-</script>
+<script src="js/jquery-1.11.2.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="app/scripts/app.js"></script>
+<script src="app/scripts/controllers/todo.js"></script>
+
 </body>
 </html>
